@@ -10,6 +10,19 @@ Provide attr_required with presence validation
 
 == Usage
 
+Include <code>AttrRequired</code>, and use <code>attr_required</code> like <code>attr_accessor</code>
+
+  class A
+    include AttrRequired
+    attr_required :attr_a
+  end
+
+  class B < A
+    attr_required :attr_b
+  end
+
+Check spec/attr_required_spec.rb to know how it works.
+
 == Note on Patches/Pull Requests
  
 * Fork the project.
