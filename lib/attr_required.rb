@@ -1,9 +1,9 @@
 module AttrRequired
+
   class AttrMissing < StandardError; end
 
   def self.included(klass)
     klass.send :include, Includable
-    extended(klass)
   end
 
   def self.extended(klass)
@@ -11,6 +11,14 @@ module AttrRequired
   end
 
   module Extendable
+
+    def inherited(klass)
+      super
+      unless required_attributes.empty?
+        klass.attr_required *required_attributes
+      end
+    end
+
     def attr_required(*keys)
       @required_attributes ||= []
       @required_attributes += Array(keys)
@@ -25,14 +33,14 @@ module AttrRequired
       Array(@required_attributes)
     end
 
-    def inherited(subclass)
-      unless required_attributes.empty?
-        subclass.attr_required *required_attributes
-      end
-    end
   end
 
   module Includable
+
+    def self.included(klass)
+      klass.send :extend, Extendable
+    end
+
     def required_attributes
       self.class.required_attributes
     end
@@ -61,6 +69,7 @@ module AttrRequired
         end
       end
     end
+
   end
 
 end
