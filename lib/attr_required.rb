@@ -6,10 +6,6 @@ module AttrRequired
     klass.send :include, Includable
   end
 
-  def self.extended(klass)
-    klass.send :extend, Extendable
-  end
-
   module Extendable
 
     def inherited(klass)
