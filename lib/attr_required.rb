@@ -4,6 +4,7 @@ module AttrRequired
 
   def self.included(klass)
     klass.send :include, Includable
+    klass.send :extend, Extendable
   end
 
   module Extendable
@@ -32,10 +33,6 @@ module AttrRequired
   end
 
   module Includable
-
-    def self.included(klass)
-      klass.send :extend, Extendable
-    end
 
     def required_attributes
       self.class.required_attributes

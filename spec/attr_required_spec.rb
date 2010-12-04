@@ -36,6 +36,7 @@ describe AttrRequired, '#attr_required?' do
     @a.attr_required?(:attr_required_a).should be_true
     @b.attr_required?(:attr_required_a).should be_true
     @b.attr_required?(:attr_required_b).should be_true
+    @a.attr_required?(:attr_required_b).should be_false
     @b.attr_required?(:to_s).should be_false
   end
 end

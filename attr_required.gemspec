@@ -3,8 +3,8 @@ Gem::Specification.new do |s|
   s.version = File.read("VERSION")
   s.required_rubygems_version = Gem::Requirement.new(">= 1.3.6") if s.respond_to? :required_rubygems_version=
   s.authors = ["nov matake"]
-  s.description = %q{Provide attr_required with presence validation}
-  s.summary = %q{Provide attr_required with presence validation}
+  s.description = %q{attr_required and attr_optional}
+  s.summary = %q{attr_required and attr_optional}
   s.email = "nov@matake.jp"
   s.extra_rdoc_files = ["LICENSE", "README.rdoc"]
   s.rdoc_options = ["--charset=UTF-8"]

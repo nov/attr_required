@@ -2,6 +2,7 @@ module AttrOptional
 
   def self.included(klass)
     klass.send :include, Includable
+    klass.send :extend, Extendable
   end
 
   module Extendable
@@ -30,10 +31,6 @@ module AttrOptional
   end
 
   module Includable
-
-    def self.included(klass)
-      klass.send :extend, Extendable
-    end
 
     def optional_attributes
       self.class.optional_attributes

@@ -1,6 +1,6 @@
 = attr_required
 
-Provide attr_required with presence validation
+Provide attr_required and attr_optional
 
 == Installation
 
@@ -10,17 +10,47 @@ Provide attr_required with presence validation
 
 Include <code>AttrRequired</code>, and use <code>attr_required</code> like <code>attr_accessor</code>
 
+# Attributes Definitions
+
   class A
-    include AttrRequired
-    attr_required :attr_a
+    include AttrRequired, AttrOptional
+    attr_required :required_a
+    attr_optional :optional_a
   end
 
-  @a = A.new
-  @a.attr_missing? #=> true
-  @a.attr_a = "foo"
-  @a.attr_missing? #=> false
+  class B < A
+    attr_required :required_b
+    attr_optional :optional_b
+  end
 
-Check spec/attr_required_spec.rb to know how it works.
+# Class Methods
+
+  A.required_attributes #=> [:required_a]
+  B.required_attributes #=> [:required_a, :required_b]
+  A.required_attributes #=> [:optional_a]
+  B.required_attributes #=> [:optional_a, :optional_b]
+
+# Instance Methods
+
+  @a = A.new
+  @b = B.new
+
+  @a.required_attributes #=> [:required_a]
+  @b.required_attributes #=> [:required_a, :required_b]
+  @a.optional_attributes #=> [:optional_a]
+  @b.optional_attributes #=> [:optional_a, :optional_b]
+
+  @a.attr_required?(:required_a) #=> true
+  @a.attr_optional?(:optiona_a)  #=> true
+  @a.attr_missing? #=> true
+  @a.attr_missing  #=> [:required_a]
+  @a.attr_missing! #=> raise AttrRequired::AttrMissing
+  @a.required_a = "foo"
+  @a.attr_missing? #=> false
+  @a.attr_missing  #=> []
+  @a.attr_missing! #=> do nothing
+
+Check spec/attr_(required|optional).rb for more details.
 
 == Note on Patches/Pull Requests
  
