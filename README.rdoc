@@ -2,10 +2,12 @@
 
 This gem provide <code>attr_required</code> and <code>attr_optional</code> like <code>attr_accessor</code>.
 
-REQUIRED and OPTIONAL is common terminology in RFCs, and used for protocol parameters.
-This gem helps those protocol library developers to define which are REQUIRED and which are OPTIONAL.
+REQUIRED and OPTIONAL are common terminology in RFCs, and used for protocol parameters.
+This gem helps RFC library developers to define which parameters (attributes in Ruby world) are REQUIRED and which are OPTIONAL.
+It might be also helpful for other developers.
 
 I've developed this gem to use for rack-oauth2, a Rack-based OAuth 2.0 library.
+http://github.com/nov/rack-oauth2
 
 == Installation
 
