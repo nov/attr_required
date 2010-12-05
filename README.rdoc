@@ -1,6 +1,11 @@
 = attr_required
 
-Provide attr_required and attr_optional
+This gem provide <code>attr_required</code> and <code>attr_optional</code> like <code>attr_accessor</code>.
+
+REQUIRED and OPTIONAL is common terminology in RFCs, and used for protocol parameters.
+This gem helps those protocol library developers to define which are REQUIRED and which are OPTIONAL.
+
+I've developed this gem to use for rack-oauth2, a Rack-based OAuth 2.0 library.
 
 == Installation
 
@@ -8,9 +13,10 @@ Provide attr_required and attr_optional
 
 == Usage
 
-Include <code>AttrRequired</code>, and use <code>attr_required</code> like <code>attr_accessor</code>
-
 # Attributes Definitions
+
+  require 'attr_required'
+  require 'attr_optional'
 
   class A
     include AttrRequired, AttrOptional
@@ -27,8 +33,11 @@ Include <code>AttrRequired</code>, and use <code>attr_required</code> like <code
 
   A.required_attributes #=> [:required_a]
   B.required_attributes #=> [:required_a, :required_b]
-  A.required_attributes #=> [:optional_a]
-  B.required_attributes #=> [:optional_a, :optional_b]
+  A.optional_attributes #=> [:optional_a]
+  B.optional_attributes #=> [:optional_a, :optional_b]
+
+  A.attr_required?(:required_a) #=> true
+  B.attr_optional?(:optional_b) #=> true
 
 # Instance Methods
 
@@ -42,6 +51,7 @@ Include <code>AttrRequired</code>, and use <code>attr_required</code> like <code
 
   @a.attr_required?(:required_a) #=> true
   @a.attr_optional?(:optiona_a)  #=> true
+
   @a.attr_missing? #=> true
   @a.attr_missing  #=> [:required_a]
   @a.attr_missing! #=> raise AttrRequired::AttrMissing
