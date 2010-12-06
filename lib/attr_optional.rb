@@ -1,11 +1,10 @@
 module AttrOptional
 
   def self.included(klass)
-    klass.send :include, Includable
-    klass.send :extend, Extendable
+    klass.send :extend, ClassMethods
   end
 
-  module Extendable
+  module ClassMethods
 
     def inherited(klass)
       super
@@ -30,16 +29,12 @@ module AttrOptional
 
   end
 
-  module Includable
+  def optional_attributes
+    self.class.optional_attributes
+  end
 
-    def optional_attributes
-      self.class.optional_attributes
-    end
-
-    def attr_optional?(key)
-      self.class.attr_optional? key
-    end
-
+  def attr_optional?(key)
+    self.class.attr_optional? key
   end
 
 end
