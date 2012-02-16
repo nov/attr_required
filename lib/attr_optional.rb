@@ -16,6 +16,11 @@ module AttrOptional
     def attr_optional(*keys)
       optional_attributes.concat(keys)
       attr_accessor *keys
+      if defined?(:required_attributes)
+        keys.each do |key|
+          required_attributes.delete key
+        end
+      end
     end
 
     def attr_optional?(key)

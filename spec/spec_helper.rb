@@ -1,6 +1,3 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-
 require 'attr_required'
 require 'attr_optional'
 require 'rspec'
@@ -14,4 +11,10 @@ end
 class B < A
   attr_required :attr_required_b
   attr_optional :attr_optional_b
+end
+
+class C < B
+  undef_required_attributes :attr_required_a
+  undef_optional_attributes :attr_optional_a
+  attr_optional :attr_required_b
 end

@@ -1,21 +1,28 @@
 require 'spec_helper.rb'
 
 describe AttrOptional do
-  describe '.attr_optional' do
-    before do
-      @a, @b = A.new, B.new
-    end
+  before do
+    @a, @b, @c = A.new, B.new, C.new
+  end
 
+  describe '.attr_optional' do
     it 'should define accessible attributes' do
-      @a.should respond_to(:attr_optional_a)
-      @a.should respond_to(:attr_optional_a=)
-      @b.should respond_to(:attr_optional_b)
-      @b.should respond_to(:attr_optional_b=)
+      @a.should respond_to :attr_optional_a
+      @a.should respond_to :attr_optional_a=
+      @b.should respond_to :attr_optional_b
+      @b.should respond_to :attr_optional_b=
     end
 
     it 'should be inherited' do
-      @b.should respond_to(:attr_optional_a)
-      @b.should respond_to(:attr_optional_a=)
+      @b.should respond_to :attr_optional_a
+      @b.should respond_to :attr_optional_a=
+    end
+
+    context 'when already required' do
+      it 'should be optional' do
+        @c.attr_required?(:attr_required_b).should be_false
+        @c.attr_optional?(:attr_required_b).should be_true
+      end
     end
   end
 
@@ -29,10 +36,6 @@ describe AttrOptional do
   end
 
   describe '#attr_optional?' do
-    before do
-      @a, @b = A.new, B.new
-    end
-
     it 'should answer whether the attributes is optional or not' do
       @a.attr_optional?(:attr_optional_a).should be_true
       @b.attr_optional?(:attr_optional_a).should be_true
@@ -49,10 +52,6 @@ describe AttrOptional do
   end
 
   describe '#optional_attributes' do
-    before do
-      @a, @b = A.new, B.new
-    end
-
     it 'should return optional attributes keys' do
       @a.optional_attributes.should == [:attr_optional_a]
       @b.optional_attributes.should == [:attr_optional_a, :attr_optional_b]
@@ -60,16 +59,9 @@ describe AttrOptional do
   end
 
   describe '.undef_optional_attributes' do
-    before do
-      class C < A
-        undef_optional_attributes :attr_optional_a
-      end
-      @c = C.new
-    end
-
     it 'should undefine accessors and remove from optional attributes' do
-      C.optional_attributes.should == []
-      @c.optional_attributes.should == []
+      C.optional_attributes.should_not include :attr_optional_a
+      @c.optional_attributes.should_not include :attr_optional_a
       @c.should_not respond_to :attr_optional_a
       @c.should_not respond_to :attr_optional_a=
     end
