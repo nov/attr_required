@@ -17,6 +17,13 @@ describe AttrRequired do
       @b.should respond_to :attr_required_a
       @b.should respond_to :attr_required_a=
     end
+
+    context 'when already optional' do
+      it 'should be optional' do
+        @c.attr_required?(:attr_optional_b).should be_true
+        @c.attr_optional?(:attr_optional_b).should be_false
+      end
+    end
   end
 
   describe '.attr_required?' do
@@ -91,8 +98,8 @@ describe AttrRequired do
 
   describe '.undef_required_attributes' do
     it 'should undefine accessors and remove from required attributes' do
-      C.required_attributes.should == []
-      @c.required_attributes.should == []
+      C.required_attributes.should_not include :attr_required_a
+      @c.required_attributes.should_not include :attr_required_a
       @c.should_not respond_to :attr_required_a
       @c.should_not respond_to :attr_required_a=
     end
