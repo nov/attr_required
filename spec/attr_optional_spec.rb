@@ -24,6 +24,12 @@ describe AttrOptional do
         @c.attr_optional?(:attr_required_b).should be_true
       end
     end
+
+    context 'when AttrRequired not included' do
+      it 'should do nothing' do
+        OnlyOptional.optional_attributes.should == [:only_optional]
+      end
+    end
   end
 
   describe '.attr_optional?' do

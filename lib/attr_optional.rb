@@ -14,7 +14,7 @@ module AttrOptional
     end
 
     def attr_optional(*keys)
-      if defined?(:undef_required_attributes)
+      if defined? undef_required_attributes
         undef_required_attributes *keys
       end
       optional_attributes.concat(keys)

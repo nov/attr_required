@@ -19,3 +19,13 @@ class C < B
   attr_optional :attr_required_b
   attr_required :attr_optional_b
 end
+
+class OnlyRequired
+  include AttrRequired
+  attr_required :only_required
+end
+
+class OnlyOptional
+  include AttrOptional
+  attr_optional :only_optional
+end

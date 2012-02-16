@@ -16,7 +16,7 @@ module AttrRequired
     end
 
     def attr_required(*keys)
-      if defined?(:undef_optional_attributes)
+      if defined? undef_optional_attributes
         undef_optional_attributes *keys
       end
       required_attributes.concat keys
