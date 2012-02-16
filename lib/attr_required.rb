@@ -16,6 +16,9 @@ module AttrRequired
     end
 
     def attr_required(*keys)
+      if defined?(:undef_optional_attributes)
+        undef_optional_attributes *keys
+      end
       required_attributes.concat keys
       attr_accessor *keys
     end
@@ -30,8 +33,10 @@ module AttrRequired
 
     def undef_required_attributes(*keys)
       keys.each do |key|
-        undef_method key, :"#{key}="
-        required_attributes.delete key
+        if attr_required?(key)
+          undef_method key, :"#{key}="
+          required_attributes.delete key
+        end
       end
     end
 

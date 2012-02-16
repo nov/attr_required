@@ -14,13 +14,11 @@ module AttrOptional
     end
 
     def attr_optional(*keys)
+      if defined?(:undef_required_attributes)
+        undef_required_attributes *keys
+      end
       optional_attributes.concat(keys)
       attr_accessor *keys
-      if defined?(:required_attributes)
-        keys.each do |key|
-          required_attributes.delete key
-        end
-      end
     end
 
     def attr_optional?(key)
@@ -33,8 +31,10 @@ module AttrOptional
 
     def undef_optional_attributes(*keys)
       keys.each do |key|
-        undef_method key, :"#{key}="
-        optional_attributes.delete key
+        if attr_optional?(key)
+          undef_method key, :"#{key}="
+          optional_attributes.delete key
+        end
       end
     end
 
