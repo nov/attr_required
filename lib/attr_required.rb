@@ -16,17 +16,23 @@ module AttrRequired
     end
 
     def attr_required(*keys)
-      @required_attributes ||= []
-      @required_attributes += Array(keys)
+      required_attributes.concat keys
       attr_accessor *keys
     end
 
     def attr_required?(key)
-      required_attributes.include?(key)
+      required_attributes.include? key
     end
 
     def required_attributes
-      Array(@required_attributes)
+      @required_attributes ||= []
+    end
+
+    def undef_required_attributes(*keys)
+      keys.each do |key|
+        undef_method key, :"#{key}="
+        required_attributes.delete key
+      end
     end
 
   end

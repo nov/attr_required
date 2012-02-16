@@ -14,8 +14,7 @@ module AttrOptional
     end
 
     def attr_optional(*keys)
-      @optional_attributes ||= []
-      @optional_attributes += Array(keys)
+      optional_attributes.concat(keys)
       attr_accessor *keys
     end
 
@@ -24,7 +23,14 @@ module AttrOptional
     end
 
     def optional_attributes
-      Array(@optional_attributes)
+      @optional_attributes ||= []
+    end
+
+    def undef_optional_attributes(*keys)
+      keys.each do |key|
+        undef_method key, :"#{key}="
+        optional_attributes.delete key
+      end
     end
 
   end
