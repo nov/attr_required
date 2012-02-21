@@ -14,6 +14,10 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.add_development_dependency "rake", ">= 0.8"
-  s.add_development_dependency "rcov", ">= 0.9"
+  if RUBY_VERSION >= '1.9'
+    s.add_development_dependency "cover_me", ">= 1.2.0"
+  else
+    s.add_development_dependency "rcov", ">= 0.9"
+  end
   s.add_development_dependency "rspec", ">= 2"
 end
