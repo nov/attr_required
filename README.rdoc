@@ -2,6 +2,8 @@
 
 This gem provide <code>attr_required</code> and <code>attr_optional</code> like <code>attr_accessor</code>.
 
+{<img src="https://secure.travis-ci.org/nov/attr_required.png" />}[http://travis-ci.org/nov/attr_required]
+
 REQUIRED and OPTIONAL are common terminology in RFCs, and used for protocol parameters.
 This gem helps RFC library developers to define which parameters (attributes in Ruby world) are REQUIRED and which are OPTIONAL.
 It might be also helpful for other developers.
@@ -65,7 +67,7 @@ http://github.com/nov/rack-oauth2
 Check spec/attr_(required|optional).rb for more details.
 
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
