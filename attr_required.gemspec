@@ -7,6 +7,7 @@ Gem::Specification.new do |s|
   s.summary = %q{attr_required and attr_optional}
   s.email = "nov@matake.jp"
   s.extra_rdoc_files = ["LICENSE", "README.rdoc"]
+  s.license = 'MIT'
   s.rdoc_options = ["--charset=UTF-8"]
   s.homepage = "http://github.com/nov/attr_required"
   s.require_paths = ["lib"]
