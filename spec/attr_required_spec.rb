@@ -70,10 +70,10 @@ describe AttrRequired do
       lambda { @b.attr_missing! }.should raise_error(AttrRequired::AttrMissing)
       @a.attr_required_a = 'attr_required_a'
       @b.attr_required_a = 'attr_required_a'
-      lambda { @a.attr_missing! }.should_not raise_error(AttrRequired::AttrMissing)
+      lambda { @a.attr_missing! }.should_not raise_error
       lambda { @b.attr_missing! }.should raise_error(AttrRequired::AttrMissing)
       @b.attr_required_b = 'attr_required_b'
-      lambda { @b.attr_missing! }.should_not raise_error(AttrRequired::AttrMissing)
+      lambda { @b.attr_missing! }.should_not raise_error
     end
   end
 
