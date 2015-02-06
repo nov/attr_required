@@ -20,8 +20,8 @@ describe AttrRequired do
 
     context 'when already optional' do
       it 'should be optional' do
-        @c.attr_required?(:attr_optional_b).should be_true
-        @c.attr_optional?(:attr_optional_b).should be_false
+        @c.attr_required?(:attr_optional_b).should == true
+        @c.attr_optional?(:attr_optional_b).should == false
       end
     end
 
@@ -34,33 +34,33 @@ describe AttrRequired do
 
   describe '.attr_required?' do
     it 'should answer whether the attributes is required or not' do
-      A.attr_required?(:attr_required_a).should be_true
-      B.attr_required?(:attr_required_a).should be_true
-      B.attr_required?(:attr_required_b).should be_true
-      B.attr_required?(:to_s).should be_false
+      A.attr_required?(:attr_required_a).should == true
+      B.attr_required?(:attr_required_a).should == true
+      B.attr_required?(:attr_required_b).should == true
+      B.attr_required?(:to_s).should == false
     end
   end
 
   describe '#attr_required?' do
     it 'should answer whether the attributes is required or not' do
-      @a.attr_required?(:attr_required_a).should be_true
-      @b.attr_required?(:attr_required_a).should be_true
-      @b.attr_required?(:attr_required_b).should be_true
-      @a.attr_required?(:attr_required_b).should be_false
-      @b.attr_required?(:to_s).should be_false
+      @a.attr_required?(:attr_required_a).should == true
+      @b.attr_required?(:attr_required_a).should == true
+      @b.attr_required?(:attr_required_b).should == true
+      @a.attr_required?(:attr_required_b).should == false
+      @b.attr_required?(:to_s).should == false
     end
   end
 
   describe '#attr_missing?' do
     it 'should answer whether any attributes are missing' do
-      @a.attr_missing?.should be_true
-      @b.attr_missing?.should be_true
+      @a.attr_missing?.should == true
+      @b.attr_missing?.should == true
       @a.attr_required_a = 'attr_required_a'
       @b.attr_required_a = 'attr_required_a'
-      @a.attr_missing?.should be_false
-      @b.attr_missing?.should be_true
+      @a.attr_missing?.should == false
+      @b.attr_missing?.should == true
       @b.attr_required_b = 'attr_required_b'
-      @b.attr_missing?.should be_false
+      @b.attr_missing?.should == false
     end
   end
 

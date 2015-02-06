@@ -20,8 +20,8 @@ describe AttrOptional do
 
     context 'when already required' do
       it 'should be optional' do
-        @c.attr_required?(:attr_required_b).should be_false
-        @c.attr_optional?(:attr_required_b).should be_true
+        @c.attr_required?(:attr_required_b).should == false
+        @c.attr_optional?(:attr_required_b).should == true
       end
     end
 
@@ -34,19 +34,19 @@ describe AttrOptional do
 
   describe '.attr_optional?' do
     it 'should answer whether the attributes is optional or not' do
-      A.attr_optional?(:attr_optional_a).should be_true
-      B.attr_optional?(:attr_optional_a).should be_true
-      B.attr_optional?(:attr_optional_b).should be_true
-      B.attr_optional?(:to_s).should be_false
+      A.attr_optional?(:attr_optional_a).should == true
+      B.attr_optional?(:attr_optional_a).should == true
+      B.attr_optional?(:attr_optional_b).should == true
+      B.attr_optional?(:to_s).should == false
     end
   end
 
   describe '#attr_optional?' do
     it 'should answer whether the attributes is optional or not' do
-      @a.attr_optional?(:attr_optional_a).should be_true
-      @b.attr_optional?(:attr_optional_a).should be_true
-      @b.attr_optional?(:attr_optional_b).should be_true
-      @b.attr_optional?(:to_s).should be_false
+      @a.attr_optional?(:attr_optional_a).should == true
+      @b.attr_optional?(:attr_optional_a).should == true
+      @b.attr_optional?(:attr_optional_b).should == true
+      @b.attr_optional?(:to_s).should == false
     end
   end
 
