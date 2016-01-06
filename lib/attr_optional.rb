@@ -9,16 +9,16 @@ module AttrOptional
     def inherited(klass)
       super
       unless optional_attributes.empty?
-        klass.attr_optional *optional_attributes
+        klass.attr_optional(*optional_attributes)
       end
     end
 
     def attr_optional(*keys)
       if defined? undef_required_attributes
-        undef_required_attributes *keys
+        undef_required_attributes(*keys)
       end
       optional_attributes.concat(keys)
-      attr_accessor *keys
+      attr_accessor(*keys)
     end
 
     def attr_optional?(key)
