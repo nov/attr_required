@@ -11,16 +11,16 @@ module AttrRequired
     def inherited(klass)
       super
       unless required_attributes.empty?
-        klass.attr_required *required_attributes
+        klass.attr_required(*required_attributes)
       end
     end
 
     def attr_required(*keys)
       if defined? undef_optional_attributes
-        undef_optional_attributes *keys
+        undef_optional_attributes(*keys)
       end
       required_attributes.concat keys
-      attr_accessor *keys
+      attr_accessor(*keys)
     end
 
     def attr_required?(key)
