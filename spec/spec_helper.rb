@@ -4,6 +4,12 @@ SimpleCov.start do
   add_filter 'spec'
 end
 
+RSpec.configure do |config|
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
+end
+
 require 'attr_required'
 require 'attr_optional'
 require 'rspec'
