@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ['LICENSE', 'README.rdoc']
   s.license = 'MIT'
   s.rdoc_options = ['--charset=UTF-8']
-  s.homepage = 'http://github.com/nov/attr_required'
+  s.homepage = 'https://github.com/nov/attr_required'
   s.require_paths = ['lib']
   s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.files = `git ls-files`.split("\n")
