@@ -1,7 +1,7 @@
 require 'simplecov'
 
 SimpleCov.start do
-  add_filter 'spec'
+  skip 'spec'
 end
 
 RSpec.configure do |config|
